@@ -99,6 +99,7 @@ jobs:
       run: |
         copy conf\rece.ini .
     - name: Test WSAA command line interface
+      if: "${{ env.AFIP_TEST_PRIV_KEY != '' }}"
       run: |
         .\wsaa.exe --analizar reingart.crt reingart.key wsmtxca 300
     - name: Register WSAA component
@@ -120,12 +121,15 @@ jobs:
         reg export "HKEY_CLASSES_ROOT\CLSID\{FA1BB90B-53D1-4FDA-8D1F-DEED2700E739}" wsfev1.reg
         type wsfev1.reg
     - name: Test WSAA COM server automation
+      if: "${{ env.AFIP_TEST_PRIV_KEY != '' }}"
       run: |
         .\tests\test_wsaa.ps1
     - name: Test WSFEv1 COM server automation
+      if: "${{ env.AFIP_TEST_PRIV_KEY != '' }}"
       run: |
         .\tests\test_wsfev1.ps1
     - name: Test RECE1 command line interface tool
+      if: "${{ env.AFIP_TEST_PRIV_KEY != '' }}"
       run: |
         $env:Path += ";$pwd"
         . .\tests\test_rece1.ps1
