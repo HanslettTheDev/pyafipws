@@ -3,12 +3,10 @@
 name: Deploy to PyPi
 
 on:
-  workflow_run:
-    workflows: ["python-package", "windows-installer"]
-    types:
-      - completed
-  release:
-    types: [published]
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
   build:
